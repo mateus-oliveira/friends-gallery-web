@@ -2,7 +2,7 @@ import React, { lazy } from 'react';
 import { useSelector } from 'react-redux';
 import PrivateRoutes from './PrivateRoutes';
 
-const PendingPosts = lazy(() => import('../../pages/Married/PendingPosts'));
+const PendingPosts = lazy(() => import('../../pages/PendingPosts'));
 export default function Married () {
 
     const auth = useSelector(state => state.auth)

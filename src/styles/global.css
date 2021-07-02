@@ -2,11 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     outline: 0;
     box-sizing: border-box;
+}
+
+:root{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    --background: #272B2F;
+    font-family: 'Roboto', 'sans-serif';
 }
 
 body{
@@ -19,6 +30,22 @@ input, button, textarea {
     font: 400 18px Roboto, sans-serif;
 }
 
+form {
+    width: 100%;
+}
+
+form input {
+    width: 100%;
+    height: 40px;
+    color: #333;
+    border: 1px solid #DCDCE6;
+    border-radius: 2px;
+    padding: 0 10px;
+}
+
 button {
     cursor: pointer;
+}
+button:hover {
+    opacity: 0.8;
 }

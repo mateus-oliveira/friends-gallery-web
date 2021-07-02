@@ -7,7 +7,7 @@ import Routes from './routes/Routes';
 
 import {store} from './store';
 import history from './services/history';
-import ScrollToTop from './components/Common/ScrollToTop.js';
+import ScrollToTop from './components/ScrollToTop.js';
 
 function App() {
     return (

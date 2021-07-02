@@ -1,6 +1,7 @@
 import produce from 'immer';
+import Reducers from '../../../constants/Reducers';
 
-const local = JSON.parse(localStorage.getItem('persist:gallery'));
+const local = JSON.parse(localStorage.getItem(Reducers.PERSIST_LOCAL_STORAGE));
 
 const INITIAL_STATE = {
     id: local ? JSON.parse(local.user).id : null,
@@ -13,28 +14,20 @@ const INITIAL_STATE = {
 export default function user(state = INITIAL_STATE, action) {
     return produce(state, draft => {
         switch (action.type) {
-            case '@auth/SIGN_IN_SUCCESS': {
-                draft.id = action.payload.id;
-                draft.username = action.payload.username;
-                draft.email = action.payload.email;
-                draft.role = action.payload.role;
-                draft.image = action.payload.image;
+            case Reducers.AUTH_SIGN_IN_SUCCESS: {
+                draft.id = action.payload.data.id;
+                draft.username = action.payload.data.username;
+                draft.email = action.payload.data.email;
+                draft.role = action.payload.data.role;
+                draft.image = action.payload.data.image;
                 break;
             }
-            case '@auth/SIGN_OUT': {
+            case Reducers.AUTH_SIGN_OUT: {
                 draft.id = null;
                 draft.username = null;
                 draft.email = null;
                 draft.role = null;
                 draft.image = null;
-                break;
-            }
-            case '@user/RELOAD_USER_SUCCESS': {
-                draft.id = action.payload.id;
-                draft.email = action.payload.email;
-                draft.username = action.payload.username;
-                draft.role = action.payload.role;
-                draft.image = action.payload.asset;
                 break;
             }
             default:

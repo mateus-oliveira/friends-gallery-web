@@ -2,16 +2,15 @@ import React, { lazy } from 'react';
 import { useSelector } from 'react-redux';
 import PrivateRoutes from './PrivateRoutes';
 
-const PendingPosts = lazy(() => import('../../pages/Married/PendingPosts'));
+const Home = lazy(() => import('../../pages/Home'));
 export default function Married () {
 
     const auth = useSelector(state => state.auth)
-    const user = useSelector(state=> state.user)
-    const authFactor = auth?.signed && user?.role === 1
+    const authFactor = auth?.signed
 
     return (
         <>
-            <PrivateRoutes exact path="/pending-posts" auth={authFactor} component={PendingPosts}/>
+            <PrivateRoutes  path="/home" auth={authFactor} component={Home}/>
         </>
     )
 } 

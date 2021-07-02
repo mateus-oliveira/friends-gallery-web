@@ -1,4 +1,5 @@
 import {all, call, put, takeLatest} from 'redux-saga/effects';
+import Reducers from '../../../constants/Reducers';
 
 import api from '../../../services/api';
 
@@ -14,18 +15,8 @@ export function* signIn({payload}) {
             password,
         });
         
-        const {id, refresh, access, username, role, image} = response.data;
-        
 
-        yield put(singInSuccess(
-            id,
-            refresh, 
-            access,
-            username,
-            role,
-            email,
-            image,
-        ));
+        yield put(singInSuccess(response.data));
 
     } catch (error) {
         yield put(signFailure());
@@ -33,5 +24,5 @@ export function* signIn({payload}) {
 }
 
 export default all([
-    takeLatest('@auth/SIGN_IN_REQUEST', signIn),
+    takeLatest(Reducers.AUTH_SIGN_IN_REQUEST, signIn),
 ]);

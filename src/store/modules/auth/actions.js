@@ -1,25 +1,27 @@
+import Reducers from "../../../constants/Reducers";
+
 export function singInRequest(email, password) {
     return {
-        type: '@auth/SIGN_IN_REQUEST',
+        type: Reducers.AUTH_SIGN_IN_REQUEST,
         payload: {email, password},
     };
 }
 
-export function singInSuccess(refresh, access, id, username, role, email, image, company) {
+export function singInSuccess(data) {
     return {
-        type: '@auth/SIGN_IN_SUCCESS',
-        payload: {refresh, access, id, username, role, email, image, company},
+        type: Reducers.AUTH_SIGN_IN_SUCCESS,
+        payload: {data},
     };
 }
 
 export function signFailure() {
     return {
-        type: '@auth/SIGN_FAILURE',
+        type: Reducers.AUTH_SIGN_IN_FAILURE,
     };
 }
 
 export function signOut() {
     return {
-        type: '@auth/SIGN_OUT',
+        type: Reducers.AUTH_SIGN_OUT,
     };
 }
