@@ -1,22 +1,26 @@
 import React,{ useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import Header from '../components/Header';
 import Post from '../components/Post';
 
 import api from '../services/api'
 
-export default function Home() {
+export default function Profile() {
     const [posts, setPosts] = useState(null)
+
+    const {username} = useParams();
+    console.log(username)
 
     useEffect(() => {
         const loadPosts = () => {
             api
-                .get('/post/posts/?status=2')
+                .get(`/post/posts/?status=2&user__username=${username}`)
                 .then(response => setPosts(response.data.results))
                 .catch(error => console.log(error))
         }
         loadPosts()
-    }, [])
+    }, [username])
 
     function renderPosts () {
         return posts.map((item, index) => {

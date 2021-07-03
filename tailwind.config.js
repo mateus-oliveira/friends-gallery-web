@@ -13,7 +13,7 @@ module.exports = {
             width: {
                 w300: '300px',
                 w400: '400px',
-            }
+            },
         },
     },
     variants: {
