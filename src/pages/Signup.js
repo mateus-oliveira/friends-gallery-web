@@ -41,7 +41,6 @@ export default function Signup() {
             .post(`/authentication/users/`, body)
             .then(response => {
                 swal("That's ok!", 'User registered', 'success')
-                console.log(response.data)
                 dispatch(singInRequest(email, password));
             })
             .catch(_ => swal('Error!', "User don't registered.", 'error'))

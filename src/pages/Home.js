@@ -18,13 +18,27 @@ export default function Home() {
         loadPosts()
     }, [])
 
+    function checkPost(id, check) {
+        api
+            .patch(`/post/posts/${id}/to-approve/`, {status: check ? 2 : 3})
+            .then(_ => {
+                let memo = [...posts];
+                const index = memo.findIndex(item => item.id === id);
+                if (index > -1) {
+                    memo.splice(index, 1)
+                    setPosts([...memo]);
+                }
+            })
+            .catch(error => console.log(error))
+    }
+
     function renderPosts () {
         return posts.map((item, index) => {
             return (
                 <div 
                     key={`post-${index}`} 
                     className='flex justify-center items-center w-full'>
-                    <Post post={item}/>
+                    <Post post={item} checkPost={checkPost}/>
                 </div>
             )
         })
