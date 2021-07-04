@@ -46,7 +46,7 @@ export default function Signup() {
             .catch(_ => swal('Error!', "User don't registered.", 'error'))
     }
 
-    function uploadImage(img){
+    async function uploadImage(img){
         const formData = new FormData()
 
         formData.append ('file', img)

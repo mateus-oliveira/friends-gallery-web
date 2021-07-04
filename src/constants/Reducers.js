@@ -6,6 +6,9 @@ const Reducers = {
     AUTH_SIGN_IN_SUCCESS: '@auth/SIGN_IN_SUCCESS',
     AUTH_SIGN_IN_FAILURE: '@auth/SIGN_FAILURE',
     AUTH_SIGN_OUT: '@auth/SIGN_OUT',
+
+    USER_RELOAD_REQUEST: '@user/RELOAD_USER_REQUEST',
+    USER_RELOAD_SUCCESS: '@user/RELOAD_USER_SUCCESS',
 };
 
 export default Reducers;

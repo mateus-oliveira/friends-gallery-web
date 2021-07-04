@@ -22,6 +22,14 @@ export default function user(state = INITIAL_STATE, action) {
                 draft.image = action.payload.data.image;
                 break;
             }
+            case Reducers.USER_RELOAD_SUCCESS: {
+                draft.id = action.payload.data.id;
+                draft.username = action.payload.data.username;
+                draft.email = action.payload.data.email;
+                draft.role = action.payload.data.role;
+                draft.image = action.payload.data.asset;
+                break;
+            }
             case Reducers.AUTH_SIGN_OUT: {
                 draft.id = null;
                 draft.username = null;
