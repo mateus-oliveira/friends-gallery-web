@@ -41,15 +41,15 @@ export default function Post({post, checkPost}) {
                         <strong>{post.user.username}</strong>
                     </Link>
                     {user.role === 1 && (
-                        <>
-                            {post.status === 1 ? 
+                        <div className='flex justify-items-end'>
+                            <CgClose 
+                                onClick={() => checkPost(post.id, false)}
+                                className='cursor-pointer text-red-600 text-2xl' />
+                            {post.status === 1 && 
                                 <FiCheck 
                                     onClick={() => checkPost(post.id, true)}
-                                    className='cursor-pointer text-green-600 text-2xl' /> :
-                                <CgClose 
-                                    onClick={() => checkPost(post.id, false)}
-                                    className='cursor-pointer text-red-600 text-2xl' />}
-                        </>
+                                    className='cursor-pointer text-green-600 text-2xl' />}
+                        </div>
                     )}
                 </div>
                 <img 

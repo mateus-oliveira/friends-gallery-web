@@ -8,7 +8,7 @@ import ProfileDropDown from './ProfileDropdown';
 export default function Header() {
     const user = useSelector(state => state.user)
     return (
-        <header className='flex w-screen justify-center items-center bg-blue-blue1 '>
+        <header className='flex w-screen h-h7/100 justify-center items-center bg-blue-blue1 sticky top-0 z-50'>
             <div className='flex w-full max-w-mwMax h-14 px-10 items-center justify-between text-white'>
                 <Link to='/home'>
                     <strong className='text-lg'>Friends Gallery</strong>

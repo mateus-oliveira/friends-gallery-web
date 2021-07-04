@@ -54,9 +54,9 @@ export default function CreatePost() {
     }
 
     return (
-        <div className='w-screen h-screen'>
+        <div className='flex flex-col w-full h-screen justify-center items-center'>
             <Header />
-            <div className='flex flex-col w-screen max-w-mwMax h-screen justify-center items-center'>
+            <div className='flex flex-col h-h93/100 w-full max-w-mwMax justify-center items-center'>
                 <div className='bg-blue-blue1 rounded flex flex-col items-center justify-center px-5 py-6 w-w400 h-h400'>
                     <form className='flex flex-col justify-between items-center h-full' onSubmit={post}>
                         <input 

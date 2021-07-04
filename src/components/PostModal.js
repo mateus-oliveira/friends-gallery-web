@@ -74,7 +74,7 @@ export default function PostModal({post, close, like, liked, likes}) {
                             <div className='flex flex-col w-full md:w-1/2 items-center'>
                                 <img 
                                     src={post.asset.file} alt={post.caption} 
-                                    className='w-40 md:w-full'/>
+                                    className='w-40 md:w-full mb-4 mr-4 rounded-md'/>
                                     <button onClick={like} className='flex items-center w-full text-blue-blue2'>
                                         {liked ? 
                                             <FaHeart className="h-full w-6 mr-2"/> :
