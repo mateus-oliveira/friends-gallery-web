@@ -4,22 +4,29 @@ import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import User from '../components/User';
 import Post from '../components/Post';
+import Pagination from '../components/Pagination';
 
 import api from '../services/api'
 
 export default function Profile() {
     const [posts, setPosts] = useState(null)
     const [count, setCount] = useState(0)
+    const [next, setNext] = useState(false)
+    const [previous, setPrevious] = useState(false)
+    const [page, setPage] = useState(0)
+    const pageLimit = 2;
 
     const {username} = useParams();
 
     useEffect(() => {
         const loadPosts = () => {
             api
-                .get(`/post/posts/?status=2&user__username=${username}`)
+                .get(`/post/posts/?status=2&user__username=${username}&limit=${pageLimit}`)
                 .then(response => {
-                    setPosts(response.data.results);
+                    setPrevious(response.data.previous)
+                    setNext(response.data.next)
                     setCount(response.data.count)
+                    setPosts(response.data.results);
                 })
                 .catch(error => console.log(error))
         }
@@ -52,11 +59,46 @@ export default function Profile() {
         })
     }
 
+    function reloadPosts(nextOrPrevious){
+        setPage(nextOrPrevious ? page + 1 : page -1)
+        const offset = (nextOrPrevious ? page + 1 : page -1) * pageLimit
+        api
+        .get(`/post/posts/?status=2&user__username=${username}&limit=${pageLimit}&offset=${offset}`)
+        .then(response => {
+            setPrevious(response.data.previous)
+            setNext(response.data.next)
+            setPosts(response.data.results)
+        })
+        .catch((error) => console.log(error))
+    }
+
+    function goToPage(p){
+        setPage(p)
+        const offset = p * pageLimit
+        api
+        .get(`/post/posts/?status=2&user__username=${username}&limit=${pageLimit}&offset=${offset}`)
+        .then(response => {
+            setPrevious(response.data.previous)
+            setNext(response.data.next)
+            setPosts(response.data.results)
+        })
+        .catch((error) => console.log(error))
+    }
+
     return (
         <div className='flex flex-col w-full h-screen justify-center items-center'>
             <Header />
             <div className='flex flex-col h-h93/100 w-full max-w-mwMax items-center'>
                 <User username={username} count={count} />
+                <Pagination 
+                    next={next} 
+                    previous={previous} 
+                    reload={reloadPosts} 
+                    totalItems={count} 
+                    pageLimit={pageLimit} 
+                    goToPage={goToPage} 
+                    page={page}
+                    width='w-wtable'/>
                 <div className='flex flex-col w-full h-full justify-between items-center sm:grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 md:gap-x-1 gap-y-4 md:gap-y-6 p-4'>
                     {posts && renderPosts()}
                 </div>
