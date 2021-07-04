@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Married from './Married/Routes';
 import Common from './Common/Routes';
+import ResetPassword from '../pages/ResetPassword';
+import ForgetPassword from '../pages/ForgetPassword';
 
 const Login = lazy(() => import('../pages/Login'));
 const Signup = lazy(() => import('../pages/Signup'));
@@ -29,6 +31,15 @@ export default function Routes(){
                                 () => <Redirect to='/home'/> : 
                                 Signup
                             }
+                    />
+                    <Route 
+                        exact
+                        path="/redefine-password" 
+                        component={ForgetPassword}
+                    />
+                    <Route 
+                        path="/redefine-password/:token" 
+                        component={ResetPassword}
                     />
                     
                     <Common />

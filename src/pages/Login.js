@@ -57,6 +57,12 @@ export default function Login() {
                     Sign Up
                 </Link>
 
+                <Link 
+                    to='/redefine-password' 
+                    className='mt-4 flex w-full justify-center items-center text-white'>
+                    Forget Password
+                </Link>
+
             </form>
         </div>
     );

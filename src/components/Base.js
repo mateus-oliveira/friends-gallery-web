@@ -13,7 +13,7 @@ export default function Base({endpoint, username}) {
     const [next, setNext] = useState(false)
     const [previous, setPrevious] = useState(false)
     const [page, setPage] = useState(0)
-    const pageLimit = 2;
+    const pageLimit = 20;
 
     useEffect(() => {
         const loadPosts = () => {

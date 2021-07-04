@@ -25,7 +25,7 @@ export default function ProfileDropDown(){
                     aria-haspopup="true">
                     {user?.image?.file ? 
                         // TODO remover "http localhost 8000"
-                        <img className="h-full w-8 rounded-full mr-2 bg-white" src={`http://localhost:8000${user?.image?.file}`} alt={user?.username} /> :
+                        <img className="h-full w-8 rounded-full mr-2 bg-white" src={user?.image?.file} alt={user?.username} /> :
                         <FaRegUserCircle className="h-full w-8 mr-2"/>
                     }
                     {user?.username}

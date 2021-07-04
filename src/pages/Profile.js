@@ -6,6 +6,8 @@ export default function Profile() {
     const {username} = useParams();
 
     return (
-        <Base endpoint={`/post/posts/?status=2&user__username=${username}`} username={username}/>
+        <Base 
+            username={username}
+            endpoint={`/post/posts/?status=2&user__username=${username}`} />
     );
 }
