@@ -31,10 +31,12 @@ export default function Home() {
     }
 
     return (
-        <div className='flex flex-col w-screen h-screen'>
+        <div className='w-screen h-screen'>
             <Header />
-            <div className='flex flex-col w-full h-full justify-between items-center sm:grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 md:gap-x-1 gap-y-4 md:gap-y-6 overflow-auto p-4'>
-                {posts && renderPosts()}
+            <div className='flex flex-col w-screen max-w-mwMax h-screen'>
+                <div className='flex flex-col w-full h-full justify-between items-center sm:grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 md:gap-x-1 gap-y-4 md:gap-y-6 overflow-auto p-4'>
+                    {posts && renderPosts()}
+                </div>
             </div>
         </div>
     );

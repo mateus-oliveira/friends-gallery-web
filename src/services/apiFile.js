@@ -1,5 +1,5 @@
 import axios from 'axios';
-import statusFunction from './statusFunctions';
+import statusHttp from './statusHttp';
 import {store} from '../store';
 
 const apiFile = axios.create({baseURL: process.env.REACT_APP_API_URL})
@@ -16,11 +16,11 @@ apiFile.interceptors.request.use(async (config) => {
 
 apiFile.interceptors.response.use(
     response => {
-        statusFunction[response.status]()
+        statusHttp[response.status]()
         return response;  
     }, 
     error => {
-        statusFunction[error.response.status](error)
+        statusHttp[error.response.status](error)
         throw error; 
     },
 )

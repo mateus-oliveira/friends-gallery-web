@@ -2,7 +2,7 @@ import React, { lazy } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Profile from '../../pages/Profile';
-import PrivateRoutes from './PrivateRoutes';
+import PrivateRoute from './PrivateRoute';
 
 const Home = lazy(() => import('../../pages/Home'));
 export default function Married () {
@@ -13,9 +13,9 @@ export default function Married () {
 
     return (
         <>
-            <PrivateRoutes  path="/home" auth={authFactor} component={Home}/>
-            <PrivateRoutes exact path="/profile" auth={authFactor} component={() => <Redirect to={`/profile/${user.username}`} />}/>
-            <PrivateRoutes  path="/profile/:username" auth={authFactor} component={Profile}/>
+            <PrivateRoute  path="/home" auth={authFactor} component={Home}/>
+            <PrivateRoute exact path="/profile" auth={authFactor} component={() => <Redirect to={`/profile/${user.username}`} />}/>
+            <PrivateRoute  path="/profile/:username" auth={authFactor} component={Profile}/>
         </>
     )
 } 

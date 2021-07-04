@@ -15,6 +15,10 @@ module.exports = {
                 w400: '400px',
             },
 
+            maxWidth:{
+                mwMax: '1280px',
+            },
+
             height: {
                 h100: '100px',
                 h200: '200px',

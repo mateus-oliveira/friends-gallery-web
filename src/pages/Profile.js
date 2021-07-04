@@ -2,21 +2,25 @@ import React,{ useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Header from '../components/Header';
+import User from '../components/User';
 import Post from '../components/Post';
 
 import api from '../services/api'
 
 export default function Profile() {
     const [posts, setPosts] = useState(null)
+    const [count, setCount] = useState(0)
 
     const {username} = useParams();
-    console.log(username)
 
     useEffect(() => {
         const loadPosts = () => {
             api
                 .get(`/post/posts/?status=2&user__username=${username}`)
-                .then(response => setPosts(response.data.results))
+                .then(response => {
+                    setPosts(response.data.results);
+                    setCount(response.data.count)
+                })
                 .catch(error => console.log(error))
         }
         loadPosts()
@@ -35,10 +39,13 @@ export default function Profile() {
     }
 
     return (
-        <div className='flex flex-col w-screen h-screen'>
+        <div className='w-screen h-screen'>
             <Header />
-            <div className='flex flex-col w-full h-full justify-between items-center sm:grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 md:gap-x-1 gap-y-4 md:gap-y-6 overflow-auto p-4'>
-                {posts && renderPosts()}
+            <div className='flex flex-col w-screen max-w-mwMax h-screen'>
+                <User username={username} count={count} />
+                <div className='flex flex-col w-full h-full justify-between items-center sm:grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 md:gap-x-1 gap-y-4 md:gap-y-6 overflow-auto p-4'>
+                    {posts && renderPosts()}
+                </div>
             </div>
         </div>
     );
