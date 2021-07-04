@@ -14,13 +14,22 @@ export default function Routes(){
         <BrowserRouter>
             <Switch>
                 <Suspense fallback={<div>Loading...</div>}>
-                    <Route exact path="/" component={
+                    <Route 
+                        exact
+                        path="/" component={
                             auth?.signed ? 
                                 () => <Redirect to='/home'/> : 
                                 Login
-                        } 
+                            }
                     />
-                    <Route path="/signup" component={Signup} />
+                    <Route 
+                        path="/signup" 
+                        component={
+                            auth?.signed ? 
+                                () => <Redirect to='/home'/> : 
+                                Signup
+                            }
+                    />
                     
                     <Common />
                     {/* <Married /> */}

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import statusFunction from './StatusFunctions';
+import statusFunction from './statusFunctions';
 import {store} from '../store';
 
 const apiFile = axios.create({baseURL: process.env.REACT_APP_API_URL})

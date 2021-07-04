@@ -21,7 +21,11 @@ export default function Login() {
 
     return (
         <div className='bg-blue-blue1 rounded flex flex-col items-center justify-center px-5 py-6 w-w300'>
-            <img src={icon} alt='Friends Gallery'/>
+            <img
+                className='h-h100'
+                alt='Friends Gallery'
+                src={icon} 
+            />
             <form className='flex flex-col' onSubmit={signIn}>
                 <input 
                     type='text'
@@ -50,7 +54,7 @@ export default function Login() {
                 <Link 
                     to='/signup' 
                     className='mt-4 flex w-full justify-center items-center text-white'>
-                    Signup
+                    Sign Up
                 </Link>
 
             </form>

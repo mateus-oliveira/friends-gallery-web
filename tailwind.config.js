@@ -14,6 +14,11 @@ module.exports = {
                 w300: '300px',
                 w400: '400px',
             },
+
+            height: {
+                h100: '100px',
+                h200: '200px',
+            },
         },
     },
     variants: {

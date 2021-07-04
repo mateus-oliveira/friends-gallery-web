@@ -1,10 +1,11 @@
 import React ,{ useEffect, useState } from "react";
-import {FiSend, FiXCircle} from 'react-icons/fi'
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
+import {FiSend, FiXCircle} from 'react-icons/fi'
 import api from "../services/api";
 
-export default function PostModal({post, close}) {
+export default function PostModal({post, close, like, liked, likes}) {
     const [comment, setComment] = useState('')
     const [comments, setComments] = useState(null)
 
@@ -26,7 +27,7 @@ export default function PostModal({post, close}) {
                     <Link to={`/profile/${item.user.username}`}>
                         <strong className='font-semibold'>{item.user.username}: </strong>
                     </Link>
-                    <strong className='font-normal'>"{item.text}"</strong>
+                    <strong className='font-normal'>{' '}{item.text}</strong>
                 </div>
             )
         })
@@ -55,7 +56,7 @@ export default function PostModal({post, close}) {
                     <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                         <div className="flex items-start justify-between p-4 bg-blue-blue1 border-b border-solid border-blueGray-200 rounded-t">
                             <h3 className="text-3xl font-semibold text-white bg-blue-blue1">
-                                Postted by{' '}
+                                Posted by{' '}
                                 <Link to={`/profile/${post.user.username}`}>
                                     {post.user.username}
                                 </Link>
@@ -70,22 +71,30 @@ export default function PostModal({post, close}) {
                         </div>
                         
                         <div className="flex relative p-6 flex-col md:flex-row justify-center items-center">
-                            <img 
-                                src={post.asset.file} alt={post.caption} 
-                                className='w-40 md:w-1/2'/>
+                            <div className='flex flex-col w-full md:w-1/2 items-center'>
+                                <img 
+                                    src={post.asset.file} alt={post.caption} 
+                                    className='w-40 md:w-full'/>
+                                    <button onClick={like} className='flex items-center w-full text-blue-blue2'>
+                                        {liked ? 
+                                            <FaHeart className="h-full w-6 mr-2"/> :
+                                            <FaRegHeart className="h-full w-6 mr-2"/>}
+                                            <strong>{likes}</strong>
+                                    </button>
+                            </div> 
 
-                            <div className='w-1/2 '>
-                            <div className='mb-2 text-lg'>
-                                <Link to={`/profile/${post.user.username}`}>
-                                    <strong className='font-semibold'>
-                                        {post.user.username}: 
-                                    </strong>
-                                </Link>
-                                <strong className='font-normal'>"{post.caption}"</strong>
-                            </div>
+                            <div className='w-full md:w-1/2 '>
+                                <div className='mb-2 text-lg'>
+                                    <Link to={`/profile/${post.user.username}`}>
+                                        <strong className='font-semibold'>
+                                            {post.user.username}: 
+                                        </strong>
+                                    </Link>
+                                    <strong className='font-normal'>{' '}{post.caption}</strong>
+                                </div>
                                 <div className='overflow-auto mb-2 flex w-full justify-center items-center'>
                                     {comments ?
-                                        <div className='h-80 w-full'>
+                                        <div className='h-20 md:h-80 w-full'>
                                             {renderComments()}
                                         </div> :
                                         <label>Loading...</label>
