@@ -5,6 +5,7 @@ import { FiCheck } from 'react-icons/fi';
 import { CgClose } from 'react-icons/cg';
 import api from '../services/api';
 import PostModal from './PostModal';
+import LazyImage from './LazyImage';
 import { Link } from 'react-router-dom';
 
 export default function Post({post, checkPost}) {
@@ -34,8 +35,8 @@ export default function Post({post, checkPost}) {
                     <Link 
                         className='flex justify-items-start items-center mb-2'
                         to={`/profile/${post.user.username}`}>
-                        {post.user?.asset?.file ? 
-                            <img className="h-full w-6 rounded-full mr-2" src={post.user?.asset?.file} alt={post.user?.username} /> :
+                        {post.user?.asset?.file_low ? 
+                            <img className="h-full w-6 rounded-full mr-2" src={post.user?.asset?.file_low} alt={post.user?.username} /> :
                             <FaRegUserCircle className="h-full w-6 mr-2"/>
                         }
                         <strong>{post.user.username}</strong>
@@ -52,8 +53,10 @@ export default function Post({post, checkPost}) {
                         </div>
                     )}
                 </div>
-                <img 
-                    src={post.asset.file} alt={post.caption} 
+                <LazyImage 
+                    src={post.asset.file}
+                    srcLow={post.asset.file_low}
+                    alt={post.caption} 
                     className='h-h200 w-full mb-2 border-t-2 border-b-2'
                     onClick={() => setShowModal(true)}/>
                 <strong className='mb-4'>{post.caption}</strong>
