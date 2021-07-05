@@ -69,6 +69,7 @@ After this, the post form will appear, and do you can select the image and write
 
 ![postgif](./src/assets/post.gif)
 
+### Evaluating a post: [click here](https://gallery.devsenior.xyz/pending-posts)
 All posts are created with the status "Pending", because the married users (husband or wife) have to validate. Then, logged how married, do you can see the blocked button side the plus button. It is how that image:
 
 ![blocked](./src/assets/blocked.png)
