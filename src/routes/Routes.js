@@ -18,11 +18,12 @@ export default function Routes(){
                 <Suspense fallback={<div>Loading...</div>}>
                     <Route 
                         exact
-                        path="/" component={
+                        path="/" 
+                        component={
                             auth?.signed ? 
                                 () => <Redirect to='/home'/> : 
                                 Login
-                            }
+                        }
                     />
                     <Route 
                         path="/signup" 
@@ -30,16 +31,24 @@ export default function Routes(){
                             auth?.signed ? 
                                 () => <Redirect to='/home'/> : 
                                 Signup
-                            }
+                        }
                     />
                     <Route 
                         exact
                         path="/redefine-password" 
-                        component={ForgetPassword}
+                        component={
+                            auth?.signed ? 
+                                () => <Redirect to='/home'/> : 
+                                ForgetPassword
+                        }
                     />
                     <Route 
                         path="/redefine-password/:token" 
-                        component={ResetPassword}
+                        component={
+                            auth?.signed ? 
+                                () => <Redirect to='/home'/> : 
+                                ResetPassword
+                        }
                     />
                     
                     <Common />
