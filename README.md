@@ -92,4 +92,4 @@ The other app functions are:
 
 * [Reset Password](https://gallery.devsenior.xyz/redefine-password/): to reset password when forget;
 * [Sign Up](https://gallery.devsenior.xyz/signup/): to register a new user friend;
-* [Profile](https://gallery.devsenior.xyz/profile/): to see the posts from an especified user. Do you have just change the username at the URL.
+* [Profile](https://gallery.devsenior.xyz/profile/): to see the posts from an especified user. Do you have just click in the username on top of the posts.
