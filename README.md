@@ -34,9 +34,22 @@ For access the System, [click here](https://gallery.devsenior.xyz/signup/) and s
 
 To run this app in your host, do you need to clone this repository and install the [Node](https://nodejs.org/en/download/). After this, you need just to install the dependencies and run your app. You can do it with the follow commands:
 
+### Clone the repository
+
 ```bash
 git clone https://github.com/mateus-oliveira/friends-gallery-web.git
 cd friends-gallery-web/
+```
+### Configure the .env
+
+In the [.env](./src/.env.example) file, define the REACT_APP_API_URL variable with the API base URL. In my case, I use the API at [https://gallery.api.devsenior.xyz](https://gallery.api.devsenior.xyz). Then write this:
+
+```python
+REACT_APP_API_URL=https://gallery.api.devsenior.xyz
+```
+### Start the app
+
+```bash
 yarn install
 yarn start
 ```
