@@ -42,7 +42,7 @@ cd friends-gallery-web/
 ```
 ### Configure the .env
 
-In the [.env](./src/.env.example) file, define the REACT_APP_API_URL variable with the API base URL. In my case, I use the API at [https://gallery.api.devsenior.xyz](https://gallery.api.devsenior.xyz). Then write this:
+In the [.env](./.env.example) file, define the REACT_APP_API_URL variable with the API base URL. In my case, I use the API at [https://gallery.api.devsenior.xyz](https://gallery.api.devsenior.xyz). Then write this:
 
 ```python
 REACT_APP_API_URL=https://gallery.api.devsenior.xyz
