@@ -8,6 +8,7 @@ import Pagination from './Pagination';
 import api from '../services/api'
 
 export default function Base({endpoint, username}) {
+    const [loading, setLoading] = useState(false)
     const [posts, setPosts] = useState([])
     const [count, setCount] = useState(0)
     const [next, setNext] = useState(false)
@@ -57,29 +58,33 @@ export default function Base({endpoint, username}) {
     }
 
     function reloadPosts(nextOrPrevious){
+        setLoading(true)
         setPage(nextOrPrevious ? page + 1 : page -1)
         const offset = (nextOrPrevious ? page + 1 : page -1) * pageLimit
         api
-        .get(`${endpoint}&limit=${pageLimit}&offset=${offset}`)
-        .then(response => {
-            setPrevious(response.data.previous)
-            setNext(response.data.next)
-            setPosts(response.data.results)
-        })
-        .catch((error) => console.log(error))
+            .get(`${endpoint}&limit=${pageLimit}&offset=${offset}`)
+            .then(response => {
+                setPrevious(response.data.previous)
+                setNext(response.data.next)
+                setPosts(response.data.results)
+            })
+            .catch((error) => console.log(error))
+            .finally(()=>setLoading(false))
     }
 
-    function goToPage(p){
+    function goToPage(p){ 
+        setLoading(true)
         setPage(p)
         const offset = p * pageLimit
         api
-        .get(`${endpoint}&limit=${pageLimit}&offset=${offset}`)
-        .then(response => {
-            setPrevious(response.data.previous)
-            setNext(response.data.next)
-            setPosts(response.data.results)
-        })
-        .catch((error) => console.log(error))
+            .get(`${endpoint}&limit=${pageLimit}&offset=${offset}`)
+            .then(response => {
+                setPrevious(response.data.previous)
+                setNext(response.data.next)
+                setPosts(response.data.results)
+            })
+            .catch((error) => console.log(error))
+            .finally(()=>setLoading(false))
     }
 
     return (
@@ -103,8 +108,15 @@ export default function Base({endpoint, username}) {
                         Without posts yet!
                     </strong>
                 )}
-                <div className='flex flex-col w-full h-full justify-between items-center sm:grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 md:gap-x-1 gap-y-4 md:gap-y-6 p-4'>
-                    {posts.length > 0 && renderPosts()}
+                <div className={`flex flex-col w-full h-full justify-between items-center p-4 ${loading ? "" : "sm:grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 md:gap-x-1 gap-y-4 md:gap-y-6"}`}>
+                    {posts.length > 0 && 
+                        <>
+                            {loading ? (
+                                <strong className='text-2xl text-blue-blue2'>
+                                    Loading...
+                                </strong>
+                            ) : renderPosts()}
+                        </>}
                 </div>
             </div>
         </div>

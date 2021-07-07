@@ -23,7 +23,7 @@ export default function PostModal({post, close, like, liked, likes}) {
     function renderComments() {
         return comments.map((item, index) => {
             return (
-                <div className='mb-2'>
+                <div className='mb-2' key={`comment-${item.id}`}>
                     <Link to={`/profile/${item.user.username}`}>
                         <strong className='font-semibold'>{item.user.username}: </strong>
                     </Link>
